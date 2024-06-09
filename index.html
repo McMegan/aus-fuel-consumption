@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!-- Index Page for Visualisation -->
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<!-- Viewport set to scale 1.0 -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<meta name="description" content="Visualisation..." />
+		<meta name="keywords" content="HTML, CSS, D3" />
+		<meta name="author" content="Megan McCarthy" />
+
+		<title>Australian State & Territory Fuel Consumption Profile (2019/2020)</title>
+
+		<!-- Include font awesome icons -->
+		<script src="https://kit.fontawesome.com/401edae862.js" crossorigin="anonymous"></script>
+
+		<!-- include stylesheet -->
+		<link href="styles/style.css" rel="stylesheet" />
+
+		<!-- include d3 -->
+		<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+
+		<!-- include javascript -->
+		<script src="scripts/classes.js"></script>
+		<script src="scripts/charts.js"></script>
+
+		<script src="scripts/scripts.js"></script>
+	</head>
+	<body>
+		<nav id="chart_links"></nav>
+		<aside>
+			<h1>Australian State & Territory Fuel Consumption Profile (2019/2020)</h1>
+			<p>
+				Compare the mix of fuels consumed as energy of a region<sup>1</sup> to other regions in Australia or to Australia as a whole. Compare fuel consumption in terms of total consumption, as a
+				percentage of regional consumption, per capita and per million dollars of Gross State Product.
+			</p>
+			<p id="footnote"><sup>1</sup> Region is used to refer to both states and territories of Australia, as well as to Australia as a whole.</p>
+		</aside>
+		<main id="chart"></main>
+		<footer id="credit">MEGAN MCCARTHY (2022)</footer>
+		<div id="tooltip"></div>
+	</body>
+</html>

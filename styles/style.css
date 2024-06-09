@@ -1,0 +1,377 @@
+/* css variables */
+:root {
+	--body-bg-color: hsl(0, 0%, 100%);
+	--body-border-color: hsl(0, 0%, 90%);
+
+	--tooltip-bg-color: hsl(0, 0%, 94%);
+
+	--body-text-color: hsl(0, 0%, 6%);
+	--footnote-text-color: hsl(0, 0%, 25%);
+	--credit-text-color: hsl(0, 0%, 25%);
+
+	--link-color: hsl(0, 0%, 25%);
+	--link-hover-color: hsl(200, 100%, 75%);
+	--link-hover-bg-color: hsl(200, 100%, 85%);
+	--link-active-color: hsl(200, 100%, 64%);
+	--link-active-bg-color: hsl(200, 100%, 80%);
+
+	--filter-bg-color: hsl(0, 0%, 100%);
+	--filter-bg-hover-color: hsl(0, 0%, 90%);
+}
+
+/* BODY */
+body {
+	font: 12pt Tahoma, sans-serif;
+	color: var(--body-text-color);
+	background-color: var(--body-bg-color);
+
+	position: fixed;
+	margin: 24px;
+	height: calc(100vh - 24px * 2);
+	width: calc(100vw - 24px * 2);
+}
+
+* {
+	box-sizing: border-box;
+}
+a {
+	cursor: pointer;
+	text-decoration: none;
+	color: var(--link-color);
+	transition: 1s;
+}
+a:hover {
+	text-decoration: none;
+	color: var(--link-hover-color);
+}
+h1,
+h2 {
+	margin: 0;
+}
+h1 {
+	font-size: 1.5rem;
+}
+h2 {
+	font-size: 1.25rem;
+	text-transform: capitalize;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar {
+	width: 12px;
+}
+::-webkit-scrollbar-track {
+	background: var(--body-bg-color);
+}
+::-webkit-scrollbar-thumb {
+	border: 3px solid var(--body-bg-color);
+	background: hsl(0, 0%, 0%, 0.15);
+	border-radius: 9px;
+}
+::-webkit-scrollbar-thumb:hover {
+	background: hsl(0, 0%, 0%, 0.25);
+}
+::-webkit-scrollbar-corner {
+	background: var(--body-bg-color);
+}
+
+/* SIDEBAR */
+aside {
+	grid-area: aside;
+
+	border-right: 1px solid var(--body-border-color);
+
+	padding: 36px 30px 36px 36px;
+}
+#footnote {
+	color: var(--footnote-text-color);
+	font-size: 0.8rem;
+}
+
+aside,
+footer {
+	margin-right: 24px;
+}
+
+/* FOOTER */
+footer {
+	grid-area: footer;
+
+	padding: 36px 30px 36px 36px;
+
+	display: grid;
+	align-content: end;
+
+	border-right: 1px solid var(--body-border-color);
+
+	order: 99;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+
+	color: var(--credit-text-color);
+	font-size: 0.6rem;
+}
+
+/* NAV */
+nav {
+	display: flex;
+
+	margin: 24px 0 0;
+	border-bottom: 1px solid var(--body-border-color);
+}
+#chart_links a {
+	font-size: 0.9em;
+	color: var(--link-color);
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 9px;
+
+	padding: 12px;
+
+	border-bottom: 2px solid transparent;
+	margin-bottom: -1px;
+}
+#chart_links a:not(.active_chart):hover {
+	color: var(--link-hover-color);
+	border-color: var(--link-hover-bg-color);
+}
+#chart_links a.active_chart {
+	color: var(--link-active-color);
+	border-color: var(--link-active-color);
+}
+
+/* MAIN / CHART */
+#chart {
+	grid-area: main;
+
+	overflow: hidden;
+
+	position: relative;
+}
+#chart > [data-chart] {
+	overflow: hidden;
+	transition: 1s;
+
+	display: grid;
+	grid-template-rows: auto 8fr;
+	gap: 12px;
+
+	height: calc(100% - 24px * 2);
+	position: absolute;
+	top: 24px;
+	right: 0;
+	bottom: 24px;
+	left: 0;
+}
+#chart > [data-chart]:first-child:not(.active_chart) {
+	top: -100%;
+}
+#chart > [data-chart]:last-child:not(.active_chart) {
+	top: 100%;
+}
+
+/* HEADER */
+.chart_header {
+	overflow: hidden;
+	padding: 0 12px 12px;
+
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px 24px;
+	align-items: center;
+
+	overflow: auto;
+
+	border-bottom: 1px solid var(--body-border-color);
+}
+
+/* FILTERS & LEGENDS */
+.filters {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 9px;
+
+	align-content: start;
+	align-items: center;
+}
+.filters h2 {
+	text-transform: uppercase;
+	letter-spacing: 0.75px;
+	font-size: 0.9rem;
+	line-height: 1em;
+}
+
+.filter_item {
+	transition: 1s;
+	cursor: pointer;
+	font-size: 0.85em;
+
+	display: flex;
+	gap: 9px;
+	justify-content: center;
+	align-items: center;
+
+	padding: 3px 6px;
+	border-radius: 6px;
+}
+
+/* FILTER COLOURS */
+.filter_item,
+.filter_item:hover {
+	color: var(--link-color);
+}
+.filter_item {
+	background-color: var(--filter-inactive-background-color);
+	border: 2px solid var(--filter-inactive-color);
+}
+.filter_item.current {
+	border-color: var(--filter-main-color);
+	background-color: var(--filter-main-background-color);
+}
+.filter_item:hover {
+	border-color: var(--filter-hover-color);
+	background-color: var(--filter-hover-background-color);
+}
+
+/* RESET */
+.reset {
+	display: flex;
+	align-items: center;
+
+	letter-spacing: 0.5px;
+	text-transform: uppercase;
+
+	margin-left: auto;
+}
+.reset a {
+	font-size: 0.8rem;
+	font-weight: bold;
+}
+
+/* SVG */
+#chart .chart_svg {
+	display: inline-block;
+	position: relative;
+	margin: 0;
+	overflow: hidden;
+	width: 100%;
+	height: 100%;
+}
+#chart svg {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+}
+
+/* TOOLTIP */
+#tooltip {
+	z-index: 9999999;
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin-right: 1rem;
+	margin-bottom: 1rem;
+	max-width: 300px;
+	font-size: 0.8rem;
+
+	/* BOX STYLING */
+	border-radius: 6px;
+	background-color: var(--tooltip-bg-color);
+
+	padding: 9px;
+	margin: 9px;
+}
+#tooltip .value {
+	padding: 0.5rem;
+}
+#tooltip strong {
+	font-weight: bold;
+}
+#tooltip:not(.visible) {
+	opacity: 0;
+	pointer-events: none;
+}
+
+/* RESPONSIVE */
+body {
+	display: grid;
+	grid-template-rows: auto auto 1fr;
+	grid-template-columns: minmax(300px, 1fr) 3fr;
+	grid-template-areas:
+		'aside nav'
+		'aside main'
+		'footer main';
+}
+@media (0px <= width <= 1000px) {
+	body {
+		grid-template-rows: auto auto 1fr auto;
+		grid-template-columns: 1fr;
+		grid-template-areas:
+			'aside'
+			'nav'
+			'main'
+			'footer';
+	}
+	nav {
+		margin: 12px 0 0;
+	}
+	aside {
+		border-right: 0px;
+		border-bottom: 1px solid var(--body-border-color);
+
+		padding: 15px 15px 12px;
+
+		margin: 0;
+	}
+	footer {
+		margin: 0;
+		border-right: 0px;
+		border-top: 1px solid var(--body-border-color);
+
+		padding: 12px 15px 15px;
+	}
+
+	svg text {
+		font-size: 1.5em;
+	}
+}
+@media (1000px <= width <= 2000px) {
+}
+@media (2000px <= width) {
+	body {
+		display: grid;
+		grid-template-rows: auto auto 1fr;
+		grid-template-columns: 400px 3fr;
+		grid-template-areas:
+			'aside nav'
+			'aside main'
+			'footer main';
+	}
+	#chart > [data-chart] {
+		display: grid;
+		grid-template-rows: auto;
+		grid-template-columns: 1fr 8fr;
+		gap: 12px;
+	}
+	.chart_header {
+		border-bottom: 0px;
+		border-right: 1px solid var(--body-border-color);
+
+		flex-direction: column;
+		gap: 24px;
+	}
+	.filters {
+		width: 100%;
+	}
+	.filter_item {
+		justify-content: start;
+	}
+	.reset {
+		margin-left: 0;
+		margin-top: auto;
+	}
+}
